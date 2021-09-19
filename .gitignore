@@ -144,3 +144,9 @@ cython_debug/
 
 # Original images
 img/*
+
+# Output video
+timelapse.mp4
+
+# VScode
+.vscode

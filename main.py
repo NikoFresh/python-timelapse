@@ -24,6 +24,8 @@ def main() -> None:
     print("Reordering the images")
     reorder_files(Config.img_dir)
     print("Done")
+    timelapse = Timelapse(Config.img_dir)
+    timelapse.create_video()
 
 
 if __name__ == "__main__":

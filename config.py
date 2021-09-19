@@ -1,2 +1,2 @@
 class Config:
-    img_dir = "./img/"
+    img_dir = "img"
