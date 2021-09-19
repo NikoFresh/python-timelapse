@@ -1,32 +1,54 @@
+import argparse
 import os
+import sys
 
-from config import Config
 from timelapse import Timelapse
+from utils import reorder_files
 
 
-def reorder_files(path: str) -> bool:
-    """
-    Remove any subdirectories in the given path and reorder the files in the
-    directory adding the name of the directory to the filename
-    """
-    for dir in os.listdir(path):
-        dir_path = os.path.join(path, dir)
-        if os.path.isdir(dir_path):
-            for file in os.listdir(dir_path):
-                file_path = os.path.join(dir_path, file)
-                os.rename(file_path, os.path.join(path, dir + "_" + file))
-            os.rmdir(dir_path)
-    return True
+parser = argparse.ArgumentParser(
+    description="Create a timelapse from a folder of images"
+)
 
+# Add the arguments
+parser.add_argument(
+    "Path", metavar="path", type=str, help="Path to the folder with the images"
+)
 
-def main() -> None:
-    # TODO
-    print("Reordering the images")
-    reorder_files(Config.img_dir)
-    print("Done")
-    timelapse = Timelapse(Config.img_dir)
-    timelapse.create_video()
+parser.add_argument(
+    "-s", "--sort", action="store_true", help="Sort the files inside the folder"
+)
+
+parser.add_argument(
+    "-d",
+    "--duration",
+    action="store",
+    help="Set the video duration, in seconds",
+    type=int,
+)
+
+parser.add_argument(
+    "-r", "--resolution", action="store", help="Set the video resolution, in pixels."
+)
 
 
 if __name__ == "__main__":
-    main()
+    args = parser.parse_args()
+
+    if not os.path.isdir(args.Path):
+        print("The path specified does not exist")
+        sys.exit()
+
+    timelapse = Timelapse(args.Path)
+
+    if args.sort:
+        print("Sorting the files...", end=" ")
+        reorder_files(args.Path)
+        print("Done")
+
+    if args.duration:
+        print(f"Setting the duration to {args.duration} seconds...", end=" ")
+        timelapse.set_duration(args.duration)
+        print("Done")
+
+    timelapse.create_video()
