@@ -10,7 +10,7 @@ class Timelapse:
 
     def __init__(self, dir: str) -> None:
         self.dir: str = dir
-        self.duration: int = 60  # Video duration in seconds
+        self.duration: int = 30  # Video duration in seconds
 
     def create_video(self):
         os.system(
