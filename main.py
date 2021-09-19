@@ -28,7 +28,10 @@ parser.add_argument(
 )
 
 parser.add_argument(
-    "-r", "--resolution", action="store", help="Set the video resolution, in pixels."
+    "-r",
+    "--resolution",
+    action="store",
+    help="Set the video resolution. Default 1440x1080",
 )
 
 
@@ -42,13 +45,22 @@ if __name__ == "__main__":
     timelapse = Timelapse(args.Path)
 
     if args.sort:
-        print("Sorting the files...", end=" ")
+        print("Sorting the files...", end=" ", flush=True)
         reorder_files(args.Path)
         print("Done")
 
     if args.duration:
-        print(f"Setting the duration to {args.duration} seconds...", end=" ")
+        print(
+            f"Setting the duration to {args.duration} seconds...", end=" ", flush=True
+        )
         timelapse.set_duration(args.duration)
         print("Done")
 
+    if args.resolution:
+        print(f"Setting the resolution to {args.resolution}...", end=" ", flush=True)
+        timelapse.set_resolution(args.resolution)
+        print("Done")
+
+    print("Creating the timelapse...", end=" ", flush=True)
     timelapse.create_video()
+    print("Done")
