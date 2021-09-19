@@ -26,3 +26,9 @@ class Timelapse:
         n_images = len(files)
         # Return the frame rate
         return int(n_images / self.duration)
+
+    def set_duration(self, duration: int) -> None:
+        """
+        Change the duration of the video, in seconds.
+        """
+        self.duration = duration
