@@ -14,7 +14,7 @@ class Timelapse:
 
     def create_video(self):
         os.system(
-            f'ffmpeg -framerate {self.frame_rate()} -pattern_type glob -i "{self.dir}/*.jpg" -s:v 1440x1080 -c:v libx264 -crf 17 -pix_fmt yuv420p timelapse.mp4'
+            f'ffmpeg -y -framerate {self.frame_rate()} -pattern_type glob -i "{self.dir}/*.jpg" -s:v 1440x1080 -c:v libx264 -crf 17 -pix_fmt yuv420p timelapse.mp4'
         )
 
     def frame_rate(self) -> int:
