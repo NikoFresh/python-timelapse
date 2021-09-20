@@ -39,3 +39,13 @@ class Timelapse:
         Change the resolution of the video. Default 1440x1080.
         """
         self.resolution = resolution
+
+    def get_settings(self) -> dict:
+        """
+        Return the settings of the timelapse.
+        """
+        return {
+            "directory": self.dir,
+            "duration": self.duration,
+            "resolution": self.resolution,
+        }

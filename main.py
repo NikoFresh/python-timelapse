@@ -61,6 +61,12 @@ if __name__ == "__main__":
         timelapse.set_resolution(args.resolution)
         print("Done")
 
+    current_settings = timelapse.get_settings()
+    print("Current settings:")
+    for key, value in current_settings.items():
+        formatted_key = "- " + key.capitalize() + ":"
+        print(f"{formatted_key: <20} {value: <20}")
+
     print("Creating the timelapse...", end=" ", flush=True)
     timelapse.create_video()
     print("Done")
