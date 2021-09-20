@@ -14,3 +14,12 @@ def reorder_files(path: str) -> bool:
                 os.rename(file_path, os.path.join(path, dir + "_" + file))
             os.rmdir(dir_path)
     return True
+
+
+def clean_dir(path: str):
+    """
+    Remove all files in the given directory
+    """
+    for file in os.listdir(path):
+        file_path = os.path.join(path, file)
+        os.remove(file_path)

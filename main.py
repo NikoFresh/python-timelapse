@@ -3,8 +3,7 @@ import os
 import sys
 
 from timelapse import Timelapse
-from utils import reorder_files
-
+from utils import clean_dir, reorder_files
 
 parser = argparse.ArgumentParser(
     description="Create a timelapse from a folder of images"
@@ -17,6 +16,13 @@ parser.add_argument(
 
 parser.add_argument(
     "-s", "--sort", action="store_true", help="Sort the files inside the folder"
+)
+
+parser.add_argument(
+    "-c",
+    "--clean_dir",
+    action="store_true",
+    help="Delete the files inside the img folder once the timelapse has been created",
 )
 
 parser.add_argument(
@@ -70,3 +76,8 @@ if __name__ == "__main__":
     print("Creating the timelapse...", end=" ", flush=True)
     timelapse.create_video()
     print("Done")
+
+    if args.clean_dir:
+        print("Cleaning up the folder...", end=" ", flush=True)
+        clean_dir(args.Path)
+        print("Done")
