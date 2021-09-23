@@ -38,6 +38,7 @@ parser.add_argument(
     "--resolution",
     action="store",
     help="Set the video resolution. Default 1440x1080",
+    type=str,
 )
 
 
@@ -81,3 +82,5 @@ if __name__ == "__main__":
         print("Cleaning up the folder...", end=" ", flush=True)
         clean_dir(args.Path)
         print("Done")
+
+    sys.exit()
