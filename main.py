@@ -29,7 +29,7 @@ parser.add_argument(
     "-d",
     "--duration",
     action="store",
-    help="Set the video duration, in seconds",
+    help="Set the video duration, in seconds. Default 30.",
     type=int,
 )
 
@@ -37,7 +37,7 @@ parser.add_argument(
     "-r",
     "--resolution",
     action="store",
-    help="Set the video resolution. Default 1440x1080",
+    help="Set the video resolution. Default 1440x1080.",
     type=str,
 )
 
