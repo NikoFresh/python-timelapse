@@ -49,6 +49,10 @@ if __name__ == "__main__":
         print("The path specified does not exist")
         sys.exit()
 
+    if not any(os.scandir(args.Path)):
+        print("The path specified is empty")
+        sys.exit()
+
     timelapse = Timelapse(args.Path)
 
     if args.sort:
