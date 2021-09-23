@@ -2,10 +2,12 @@ import os
 
 
 class Timelapse:
-    def __init__(self, dir: str) -> None:
+    def __init__(
+        self, dir: str, duration: int = 30, resolution: str = "1440x1080"
+    ) -> None:
         self.dir: str = dir
-        self.duration: int = 30  # Video duration in seconds
-        self.resolution: str = "1440x1080"  # Video resolution
+        self.duration: int = duration  # Video duration in seconds
+        self.resolution: str = resolution  # Video resolution
 
     def create_video(self) -> None:
         os.system(
